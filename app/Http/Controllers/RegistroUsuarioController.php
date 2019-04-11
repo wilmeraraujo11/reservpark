@@ -11,7 +11,8 @@ use App\User;
 use Illuminate\Http\Request;
 use validator;
 use Response;
-use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class RegistroUsuarioController extends Controller
 {
@@ -69,10 +70,11 @@ class RegistroUsuarioController extends Controller
         $usuario->dir=$request->input('dir');
         $usuario->tel=$request->input('tel');
         $usuario->email=$request->input('email');
-        $usuario->password=bcrypt($request->input('password'));
+        $usuario->password= Hash::make ($request->input('password'));
         $usuario->id_tdoc=$request->input('tdoc');
         $usuario->id_gen=$request->input('gen');
         $usuario->id_rol=$request->input('id_rol');
+        $usuario->remember_token = Str::random('60');
         $usuario->save();
         //return 'registro guardado';
         return redirect('/registrousuarios')->with('msg','Se guardo satisfactoriamente');
@@ -142,7 +144,6 @@ class RegistroUsuarioController extends Controller
         $users -> dir=$request['editdir'];
         $users -> tel=$request['edittel'];
         $users -> email=$request['editemail'];
-        $users -> password=bcrypt($request['editpassword']);
         $users -> id_tdoc=$request['edittdoc'];
         $users -> id_gen=$request['editgen'];
         $users -> id_rol=$request['editid_rol'];

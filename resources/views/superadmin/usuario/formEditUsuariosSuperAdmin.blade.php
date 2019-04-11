@@ -38,16 +38,7 @@
           @endif
         </div>
           
-        <!--Password-->
-        Contraseña
-        <div class="form-group">
-          <input id="editpassword" type="text" name="editpassword" class="form-control{{ $errors->has('editpassword') ? ' is-invalid' : '' }}" required autofocus value placeholder="Contraseña">
-          @if ($errors->has('editpassword'))
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $errors->first('editpassword') }}</strong>
-              </span>
-          @endif
-        </div>
+        
         <!--Rol-->
         Rol
         <div class="form-group">
@@ -60,7 +51,16 @@
             @endforeach()
           </select>
         </div>
-        
+        <!--Email-->
+            Correo electronico
+              <div class="form-group">
+                <input id="editemail" type="email" name="editemail" class="form-control{{ $errors->has('editemail') ? ' is-invalid' : '' }}" value="{{ $users->email }}" required autofocus placeholder="Correo electronico">
+                @if ($errors->has('editemail'))
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('editemail') }}</strong>
+                    </span>
+                @endif
+              </div>
       </div>      
       <div class="col-sm-6">
                              <!--numero de documento-->
@@ -105,16 +105,7 @@
                 @endforeach
               </select>
               </div>
-            <!--Email-->
-            Correo electronico
-              <div class="form-group">
-                <input id="editemail" type="email" name="editemail" class="form-control{{ $errors->has('editemail') ? ' is-invalid' : '' }}" value="{{ $users->email }}" required autofocus placeholder="Correo electronico">
-                @if ($errors->has('editemail'))
-                    <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('editemail') }}</strong>
-                    </span>
-                @endif
-              </div>
+            
             </div>
                               
                                  
